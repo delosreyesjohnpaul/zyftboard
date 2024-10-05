@@ -10,7 +10,7 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: 'LiveDocs',
+  title: 'ZyftBoard: Your go-to collaborative editor',
   description: 'Your go-to collaborative editor',
 }
 
