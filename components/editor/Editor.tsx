@@ -10,8 +10,9 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import React from 'react';
-import {liveblocksConfig, useEditorStatus} from "@liveblocks/react-lexical"
+import {liveblocksConfig, LiveblocksPlugin, useEditorStatus} from "@liveblocks/react-lexical"
 import Loader from '../Loader';
+import FloatingToolbarPlugin from './plugins/FloatingToolbarPlugin'
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -32,7 +33,7 @@ export function Editor({roomId, currentUserType} : {roomId: string, currentUserT
       throw error;
     },
     theme: Theme,
-    editable: currentUserType === 'editor'
+    editable: currentUserType === 'editor',
   });
 
   return (
@@ -55,10 +56,14 @@ export function Editor({roomId, currentUserType} : {roomId: string, currentUserT
                   placeholder={<Placeholder />}
                   ErrorBoundary={LexicalErrorBoundary}
                 />
+                 {currentUserType === 'editor' && <FloatingToolbarPlugin />}
                 <HistoryPlugin />
                 <AutoFocusPlugin />
               </div>
           )}
+          <LiveblocksPlugin>
+            
+          </LiveblocksPlugin>
         </div>
 
         
